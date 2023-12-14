@@ -58,15 +58,51 @@ while True:
 ошибочный ввод  
 ```python
 while True:
-    inp = get_float_input()
-    if not isinstance(inp, float):
-        if inp == "start":
-            if len(arr) > 1:
-                return arr
-            print(error_msg2)
-            continue
-        print(error_msg1)
-        continue
-    print(success_msg)
-    arr.append(inp)
+   inp = get_float_input()
+   if not isinstance(inp, float):
+     if inp == "start":
+         if len(arr) > 1:
+             return arr
+         print(error_msg2)
+         continue
+     print(error_msg1)
+     continue
+   print(success_msg)
+   arr.append(inp)
+```
+
+Функция end_program отвечает за завершающую часть программы и требует от  
+пользователя совершить какое-либо действие (получить результат работы программы,  
+запустить программу заново или выйти из неё).  
+Она состоит из небольшой менюшки и цикла, предотвращающего ошибочный ввод:  
+```python
+while True:
+   inp = str(input())
+   match (inp):
+      case "1":
+          print(result)
+      case "2":
+          break
+      case "3":
+          return False
+      case _:
+          print(end_msg)
+return True
+```  
+
+Функция selection_sort представляет собой сам алгоритм сортировки, работающий  
+с пользовательским массивом данных arr
+```python
+for i in range(len(arr) - 1):
+  minimum = arr[i]
+  index = i
+  for j in range(i + 1, len(arr)):
+      if minimum > arr[j]:
+          minimum = arr[j]
+          index = j
+  if index != i:
+      temp = arr[i]
+      arr[i] = arr[index]
+      arr[index] = temp
+return arr
 ```
